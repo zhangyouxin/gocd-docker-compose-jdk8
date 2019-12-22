@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+    go-server:
+        container_name: "gocd-server"
+        image: gocd/gocd-server:v19.11.0
+        user: "0:0"
+        networks: 
+            - gonet
+        ports:
+            - "8153:8153"
+            - "8154:8154"
+        volumes:
+            - ./config/cruise-config.xml:/godata/config/cruise-config.xml
+    go-agent:
+        container_name: "gocd-agent"
+        build: ./GoAgentDockerfile
+        user: "0:0"
+        networks: 
+            - gonet
+        depends_on:
+            - "go-server"
+        environment:
+            AGENT_AUTO_REGISTER_KEY: '123456789abcdefgh987654321'
+            GO_SERVER_URL: https://gocd-server:8154/go
+
+networks: 
+    gonet:
+        driver: bridge
