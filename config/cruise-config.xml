@@ -6,5 +6,4 @@
       <artifactsDir>artifacts</artifactsDir>
     </artifacts>
   </server>
-  </pipelines>
 </cruise>
