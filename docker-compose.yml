@@ -12,6 +12,9 @@ services:
             - "8154:8154"
         volumes:
             - ./config/cruise-config.xml:/godata/config/cruise-config.xml
+        environment: 
+            GOCD_PLUGIN_INSTALL_npm: https://github.com/varchev/go-npm-poller/releases/download/0.3.1/go-npm-poller.jar
+  
     go-agent:
         container_name: "gocd-agent"
         build:
