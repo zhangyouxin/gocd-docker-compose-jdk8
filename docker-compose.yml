@@ -25,6 +25,8 @@ services:
             - gonet
         depends_on:
             - "go-server"
+        volumes:
+            - ./app:/app
         environment:
             AGENT_AUTO_REGISTER_KEY: '123456789abcdefgh987654321'
             GO_SERVER_URL: https://gocd-server:8154/go
