@@ -1,7 +1,9 @@
 FROM gocd/gocd-agent-alpine-3.9:v19.11.0
 
 USER root:root
-RUN echo http://mirrors.ustc.edu.cn/alpine/v3.6/main > /etc/apk/repositories
+RUN echo http://mirrors.aliyun.com/alpine/v3.11/main/ > /etc/apk/repositories && \
+    echo http://mirrors.aliyun.com/alpine/v3.11/community/ >> /etc/apk/repositories
+RUN apk update
 RUN apk add --update openjdk8
 RUN apk add --update nodejs npm
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
